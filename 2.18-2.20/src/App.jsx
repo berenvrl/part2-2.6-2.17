@@ -6,8 +6,9 @@ import "./index.css";
 
 const api_key = import.meta.env.VITE_KEY;
 const api_url = import.meta.env.VITE_URL;
-// console.log(api_key);
-// console.log(import.meta);
+
+console.log(api_key);
+console.log(import.meta);
 
 const App = () => {
   const [input, setInput] = useState("");
