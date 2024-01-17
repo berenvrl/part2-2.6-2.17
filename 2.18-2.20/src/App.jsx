@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import countries from "./services/countries";
-import FilteredCountries from "./components/FilteredCountries";
-import "./index.css";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import countries from './services/countries';
+import FilteredCountries from './components/FilteredCountries';
+import './index.css';
 
 const api_key = import.meta.env.VITE_KEY;
 const api_url = import.meta.env.VITE_URL;
 
-console.log(api_key);
-console.log(import.meta);
+// console.log(api_key);
+// console.log(api_url);
+// console.log(import.meta);
 
 const App = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [queryObjArray, setQueryObjArray] = useState(null);
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [temperatureInfo, setTemperatureInfo] = useState({});
@@ -21,14 +22,14 @@ const App = () => {
     base: api_url,
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     setInput(e.target.value);
   };
 
   //fetching countries data
   const fetchdata = async () => {
     try {
-      countries.getAll().then((initialArray) => {
+      countries.getAll().then(initialArray => {
         setQueryObjArray(initialArray);
       });
     } catch (error) {
@@ -44,7 +45,7 @@ const App = () => {
   useEffect(() => {
     if (!queryObjArray) return;
 
-    const finalfiltered = queryObjArray.filter((country) =>
+    const finalfiltered = queryObjArray.filter(country =>
       country.name.common.toLowerCase().includes(input.toLowerCase())
     );
 
@@ -59,7 +60,7 @@ const App = () => {
       );
       setTemperatureInfo(response.data);
     } catch (error) {
-      console.log("fail getting temperature informations");
+      console.log('fail getting temperature informations');
       console.error(error.message);
     }
   };
@@ -68,7 +69,7 @@ const App = () => {
 
   return (
     <>
-      <div style={{ margin: "15px" }}>
+      <div style={{ margin: '15px' }}>
         <span>Find countries </span>
         <input
           className="inputfield"
@@ -76,13 +77,13 @@ const App = () => {
           value={input}
           placeholder="Type to search"
           onChange={handleInputChange}
-          style={{ padding: "4px" }}
+          style={{ padding: '4px' }}
         />
       </div>
       {input ? (
         filteredCountries.length < 10 ? (
           <div>
-            <ul style={{ listStyle: "none" }}>
+            <ul style={{ listStyle: 'none' }}>
               {filteredCountries.map((item, i) => (
                 <FilteredCountries
                   item={item}
