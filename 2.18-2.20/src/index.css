@@ -1,0 +1,4 @@
+.inputfield:focus {
+  outline-color: rgb(62, 62, 254);
+  box-shadow: 1px 2px 5px rgb(62, 62, 254);
+}
